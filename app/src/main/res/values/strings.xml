@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TTExercise</string>
+    <string name="fetch_users">Fetch users</string>
 </resources>
