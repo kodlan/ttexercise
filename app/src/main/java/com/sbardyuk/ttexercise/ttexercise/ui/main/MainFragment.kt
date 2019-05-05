@@ -1,5 +1,6 @@
 package com.sbardyuk.ttexercise.ttexercise.ui.main
 
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -40,6 +41,13 @@ class MainFragment : Fragment(), UserRecyclerAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        TODO("not implemented")
+        // TODO: display details in separate fragment instead of dialog
+        val user = userRecyclerAdapter.getItem(position)
+        val userString = user.name + "\n" + user.email + "\n" + user.infos;
+
+        val dialogBuilder= AlertDialog.Builder(context)
+        dialogBuilder.setTitle("User info")
+        dialogBuilder.setMessage(userString)
+        dialogBuilder.create().show()
     }
 }

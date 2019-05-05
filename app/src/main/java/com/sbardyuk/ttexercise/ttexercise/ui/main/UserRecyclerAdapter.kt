@@ -23,6 +23,10 @@ class UserRecyclerAdapter(private var items: List<User>, private var listener: O
         this.items = newData
     }
 
+    fun getItem(position: Int): User {
+        return this.items[position]
+    }
+
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
