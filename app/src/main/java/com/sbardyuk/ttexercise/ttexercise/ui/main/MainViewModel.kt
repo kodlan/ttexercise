@@ -24,7 +24,6 @@ class MainViewModel : ViewModel() {
                 isLoading.set(false)
                 listLiveData.value = ArrayList(data)
             }
-
         })
     }
 }

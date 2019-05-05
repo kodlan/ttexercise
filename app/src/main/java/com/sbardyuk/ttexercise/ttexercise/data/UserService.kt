@@ -1,15 +1,32 @@
 package com.sbardyuk.ttexercise.ttexercise.data
 
-import android.os.Handler
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserService {
 
     fun getListData(onListDataReadyCallback: OnListDataReadyCallback) {
-        val list = arrayListOf(
-            User("test1", "email@email.com", "infos11", "http://picture1.jpg"),
-            User("test3", "email@email.com", "infos22", "http://picture2.jpg"),
-            User("test5", "email@email.com", "infos33", "http://picture3.jpg"))
-        Handler().postDelayed({ onListDataReadyCallback.onDataReady(list)}, 2000)
+
+        val api = ApiEndpointInterface.create()
+
+        val call = api.userList()
+        call.enqueue(object : Callback<List<User>> {
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                TODO("not implemented")
+            }
+
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if (response.isSuccessful && response.body() != null) {
+                    onListDataReadyCallback.onDataReady(response.body()!!)
+                } else {
+                    TODO("not implemented")
+                }
+            }
+
+        })
+
+
     }
 }
 
